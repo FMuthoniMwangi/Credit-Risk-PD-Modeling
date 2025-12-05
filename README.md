@@ -31,17 +31,17 @@ This repository contains the analysis, code, and interpretation for developing a
 #### Visual Interpretations 
 
  **Income Distribution by Default Status:** 
- ![Income Distribution by Default Status](images\vis-1.png)
+ ![Income Distribution by Default Status](Credit-Risk-PD-Modeling\images\vis-1.png)
 
     * *Interpretation:* The heavy overlap between the two classes confirmed that raw income is a weak linear predictor, justifying the creation of the DTI ratio.
 
 
  **Correlation Heatmap:** t
- ![Correlation Heatmap](images\vis-2.png)
+ ![Correlation Heatmap](Credit-Risk-PD-Modeling\images\vis-2.png)
     * *Interpretation:* Showed near-zero correlation between raw numerical features and the `Default` target, reinforcing the need for engineered features.
 
 **Default Rate by Loan Purpose** 
-![Default Rate by Loan Purpose](images\vis-3.png)
+![Default Rate by Loan Purpose](Credit-Risk-PD-Modeling\images\vis-3.png)
 | Clearly illustrated the varying default rates across categories. 
 ---
 
@@ -89,6 +89,6 @@ The primary recommendation was to address the fatal flaw of **class imbalance**.
 | **AUC** | $\mathbf{0.6866}$ | Major gain in discriminative power. |
 | **KS Statistic** | $\mathbf{0.2520}$ | Acceptable separation of risk scores. |
 | **Confusion Matrix** | $\begin{bmatrix} 280 & 116 \\ 34 & 70 \end{bmatrix}$ | **Success:** $\mathbf{70}$ True Positives were correctly identified, stabilizing the model. |
-![Weighted Logistic Regression Roc Curve](images\vis-4.png)
+![Weighted Logistic Regression Roc Curve](Credit-Risk-PD-Modeling\images\vis-4.png)
 
 This final weighted model provides a robust, interpretable, and reasonably predictive baseline for assessing the Probability of Default.
