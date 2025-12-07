@@ -21,6 +21,9 @@ This repository contains the analysis, code, and interpretation for developing a
 
 ## Exploratory Data Analysis
 
+### Univariate Analysis
+Numerical features showed reasonable distributions, though income had a few negative values (likely data entry errors). Credit scores ranged widely, with a mean around 649.
+
 ### Bivariate Analysis Highlights
 
 - **Credit Score:** Defaulters had slightly higher average scores → suggests non-linear relationships.
@@ -87,17 +90,45 @@ The primary recommendation was to address the fatal flaw of **class imbalance**.
 
 ### Weighted Model Evaluation (Final Result)
 
-| Metric | Weighted LogReg Result | Improvement from Baseline |
+
+| Metric | Weighted LogReg Result | Improvement |
 | :--- | :--- | :--- |
-| **AUC** | **0.6866** | Major gain in discriminative power. |
-| **KS Statistic** | **0.2520** | Acceptable separation of risk scores. |
-| **Confusion Matrix** | `[[280, 116], [34, 70]]` | **Success:** 70 True Positives were correctly identified, stabilizing the model. |
+| **Accuracy** | 0.514 | Drops because model now predicts minority class |
+| **AUC** | 0.4874 | Still low, but better separation |
+| **KS Statistic** | 0.0873 | Slight improvement |
+| **Confusion Matrix** | `[[204, 192], [51, 53]]` | **Success:** 53 True Positives identified |
+
+
+### Additional Model Metrics
+| Metric | Baseline | Weighted |
+| ------ | -------- | -------- |
+| Precision | 0.00 | 0.22 |
+| Recall | 0.00 | 0.51 |
+| F1-score | 0.00 | 0.31 |
+
+*Interpretation:* Weighted Logistic Regression significantly improves Recall, which is critical for identifying defaulters.
 
 
 ![Weighted Logistic Regression ROC Curve](images/vis-4.png)
 
-This final weighted model provides a robust, interpretable, and reasonably predictive baseline for assessing the Probability of Default.
 
-Contacts 
-- Faith Mwangi
+*Interpretation:* While AUC remains modest, the model now captures defaults, which is critical for risk management.
+
+
+### Why KS Statistic Matters
+The KS statistic measures the maximum separation between cumulative distributions of defaulters vs non-defaulters. A higher KS indicates better discriminatory power. Our weighted model improved KS from **0.08 → 0.09**, which is modest but in the right direction.
+
+
+### Insights & Next Steps
+- **Business Impact:** Identifying 53 defaulters can significantly reduce portfolio risk exposure.
+- **Limitations:** Logistic Regression assumes linearity; performance is constrained by feature complexity.
+- **Recommendations:**  
+  - Try **SMOTE** or other resampling techniques  
+  - Explore **non-linear models** (Random Forest, XGBoost)  
+  - Incorporate behavioral or transactional data for richer features  
+
+---
+
+## Contacts
+- Faith Mwangi  
 - muthoninduta@gmail.com
