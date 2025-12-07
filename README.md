@@ -45,7 +45,7 @@ This repository contains the analysis, code, and interpretation for developing a
 
 Two features were engineered to capture relationships missed by raw data:
 
-1.  **Debt-to-Income Ratio ($\mathbf{DTI\_Ratio}$):** Calculated as $\frac{\text{loan\_amount}}{\text{income}}$.
+1.  **Debt-to-Income Ratio ($\mathbf{DTI\_Ratio}$):** Calculated as $$\frac{\text{loan\_amount}}{\text{income}}$$.
     * **Justification:** A core risk metric that directly measures **debt serviceability**.
 2.  **Age-Risk Group ($\mathbf{Age\_Group}$):** Age was binned to capture the known **non-linear risk curve** associated with age.
 
@@ -80,7 +80,7 @@ The initial model, fitted without addressing the 4:1 class imbalance, failed.
 
 ### Weakness and Recommendation
 
-The primary recommendation was to address the fatal flaw of **class imbalance**. This was implemented by running a **Weighted Logistic Regression** using the $\text{class\_weight}=\text{'balanced'}$ parameter.
+The primary recommendation was to address the fatal flaw of **class imbalance**. This was implemented by running a **Weighted Logistic Regression** using the $$\text{class\_weight}=\text{'balanced'}$$ parameter.
 
 ### Weighted Model Evaluation (Final Result)
 
