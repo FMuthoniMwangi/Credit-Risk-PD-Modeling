@@ -116,7 +116,8 @@ The primary recommendation was to address the fatal flaw of **class imbalance**.
 
 
 ### Why KS Statistic Matters
-The KS statistic measures the maximum separation between cumulative distributions of defaulters vs non-defaulters. A higher KS indicates better discriminatory power. Our weighted model improved KS from **0.08 → 0.09**, which is modest but in the right direction.
+The KS statistic measures the maximum separation between cumulative distributions of defaulters vs non-defaulters. A higher KS indicates better discriminatory power. 
+The weighted model improved KS from **0.0806 → 0.0873**, which is small but in the right direction.
 
 
 ### Insights & Next Steps
