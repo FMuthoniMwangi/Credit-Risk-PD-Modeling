@@ -41,13 +41,16 @@ This repository contains the analysis, code, and interpretation for developing a
 
 ---
 
+
 ## Feature Engineering
 
 Two features were engineered to capture relationships missed by raw data:
 
-1.  **Debt-to-Income Ratio ($\mathbf{DTI\_Ratio}$):** Calculated as $$\frac{\text{loan\_amount}}{\text{income}}$$.
-    * **Justification:** A core risk metric that directly measures **debt serviceability**.
-2.  **Age-Risk Group ($\mathbf{Age\_Group}$):** Age was binned to capture the known **non-linear risk curve** associated with age.
+1. **Debt-to-Income Ratio (DTI_Ratio):** Calculated as  
+   **Loan Amount ÷ Income**  
+   *Justification:* A core risk metric that directly measures **debt serviceability**.
+
+2. **Age-Risk Group (Age_Group):** Age was binned to capture the known **non-linear risk curve** associated with age.
 
 **Final Data Prep:** All numerical features were transformed using **Standard Scaling**, and categorical features were converted using **One-Hot Encoding**.
 
@@ -68,11 +71,10 @@ The initial model, fitted without addressing the 4:1 class imbalance, failed.
 
 ### Coefficient Interpretation (Baseline)
 
-| Feature | Odds Ratio (`e^β`) | Finding |
-| ------- | ------------------ | ------- |
+| Feature | Odds Ratio (e^β) | Finding |
+| ------- | ---------------- | ------- |
 | **DTI_Ratio** | **1.871** | **Strongest predictor:** A one-unit increase in DTI increases the odds of default by **87.1%**. |
 | **credit_score** | 1.128 | **Counter-intuitive:** Higher credit score appears to increase default risk — a sign of model distortion due to class imbalance. |
-
 
 ---
 
@@ -80,15 +82,17 @@ The initial model, fitted without addressing the 4:1 class imbalance, failed.
 
 ### Weakness and Recommendation
 
-The primary recommendation was to address the fatal flaw of **class imbalance**. This was implemented by running a **Weighted Logistic Regression** using the $$\text{class\_weight}=\text{'balanced'}$$ parameter.
+The primary recommendation was to address the fatal flaw of **class imbalance**. This was implemented by running a **Weighted Logistic Regression** using the parameter:  
+`class_weight = 'balanced'`
 
 ### Weighted Model Evaluation (Final Result)
 
 | Metric | Weighted LogReg Result | Improvement from Baseline |
 | :--- | :--- | :--- |
-| **AUC** | $\mathbf{0.6866}$ | Major gain in discriminative power. |
-| **KS Statistic** | $\mathbf{0.2520}$ | Acceptable separation of risk scores. |
-| **Confusion Matrix** | $\begin{bmatrix} 280 & 116 \\ 34 & 70 \end{bmatrix}$ | **Success:** $\mathbf{70}$ True Positives were correctly identified, stabilizing the model. |
+| **AUC** | **0.6866** | Major gain in discriminative power. |
+| **KS Statistic** | **0.2520** | Acceptable separation of risk scores. |
+| **Confusion Matrix** | `[[280, 116], [34, 70]]` | **Success:** 70 True Positives were correctly identified, stabilizing the model. |
+
 
 ![Weighted Logistic Regression ROC Curve](images/vis-4.png)
 
